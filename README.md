@@ -18,25 +18,27 @@
 
 - has_many :items
 - has_many :orders
+- has_many :purchasers
 
 ## items テーブル
 
-| Column              | Type       | Options     |
-| ------------------- | ---------- | ----------- |
-| name                | text       | null: false |
-| info                | text       | null: false | 
-| category            | integer    | null: false |
-| sales_status        | integer    | null: false |
-| shipping_fee_status | integer    | null: false |
-| prefecture_source   | integer    | null: false |
-| scheduled_delivery  | integer    | null: false |
-| price               | integer    | null: false |
-| user                | references |             |
+| Column                 | Type       | Options     |
+| ---------------------- | ---------- | ----------- |
+| name                   | string     | null: false |
+| info                   | text       | null: false | 
+| category_id            | integer    | null: false |
+| sales_status_id        | integer    | null: false |
+| shipping_fee_status_id | integer    | null: false |
+| prefecture_source_id   | integer    | null: false |
+| scheduled_delivery_id  | integer    | null: false |
+| price                  | integer    | null: false |
+| user                   | references |             |
 
 ### Association
 
-- belongs_to :users
-- belongs_to :orders
+- belongs_to :user
+- has_one    :order
+- has_one    :purchasers
 
 ## orders テーブル
 
@@ -53,5 +55,18 @@
 
 ### Association
 
-- belongs_to :users
-- has_one    :items
+- belongs_to :user
+- has_one    :item
+
+## purchasers テーブル
+
+| Column         | Type          | Options     |
+| -------------- | ------------- | ----------- |
+| purchase_price | references    |             |
+| item           | references    |             |
+| user           | references    |             |
+
+### Association
+
+- belongs_to :user
+- has_one    :item
