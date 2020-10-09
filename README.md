@@ -28,7 +28,7 @@
 | category            | integer    | null: false |
 | sales_status        | integer    | null: false |
 | shipping_fee_status | integer    | null: false |
-| prefecture          | integer    | null: false |
+| prefecture_source   | integer    | null: false |
 | scheduled_delivery  | integer    | null: false |
 | price               | integer    | null: false |
 | user                | references |             |
