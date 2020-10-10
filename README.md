@@ -22,36 +22,36 @@
 
 ## items テーブル
 
-| Column                 | Type       | Options     |
-| ---------------------- | ---------- | ----------- |
-| name                   | string     | null: false |
-| info                   | text       | null: false | 
-| category_id            | integer    | null: false |
-| sales_status_id        | integer    | null: false |
-| shipping_fee_status_id | integer    | null: false |
-| prefecture_source_id   | integer    | null: false |
-| scheduled_delivery_id  | integer    | null: false |
-| price                  | integer    | null: false |
-| user                   | references |             |
+| Column                 | Type       | Options           |
+| ---------------------- | ---------- | ----------------- |
+| name                   | string     | null: false       |
+| info                   | text       | null: false       |
+| category_id            | integer    | null: false       |
+| sales_status_id        | integer    | null: false       |
+| shipping_fee_status_id | integer    | null: false       |
+| prefecture_source_id   | integer    | null: false       |
+| scheduled_delivery_id  | integer    | null: false       |
+| price                  | integer    | null: false       |
+| user                   | references | foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - has_one    :order
-- has_one    :purchasers
+- has_one    :purchaser
 
 ## orders テーブル
 
-| Column       | Type          | Options     |
-| ------------ | ------------- | ----------- |
-| post_code    | string        | null: false |
-| prefecture   | integer       | null: false |
-| city         | string        | null: false |
-| addresses    | string        | null: false |
-| building     | string        |             |
-| phone_number | integer       | null: false |
-| user         | references    |             |
-| item         | references    |             |
+| Column       | Type          | Options           |
+| ------------ | ------------- | ----------------- |
+| post_code    | string        | null: false       |
+| prefecture   | integer       | null: false       |
+| city         | string        | null: false       |
+| addresses    | string        | null: false       |
+| building     | string        |                   |
+| phone_number | integer       | null: false       |
+| user         | references    | foreign_key: true |
+| item         | references    | foreign_key: true |
 
 ### Association
 
@@ -60,13 +60,11 @@
 
 ## purchasers テーブル
 
-| Column         | Type          | Options     |
-| -------------- | ------------- | ----------- |
-| purchase_price | references    |             |
-| item           | references    |             |
-| user           | references    |             |
-
+| Column         | Type          | Options           |
+| -------------- | ------------- | ----------------- |
+| item           | references    | foreign_key: true |
+| user           | references    | foreign_key: true |
 ### Association
 
 - belongs_to :user
-- has_one    :item
+- belongs_to :item
