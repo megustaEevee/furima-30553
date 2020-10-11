@@ -8,6 +8,8 @@ class User < ApplicationRecord
   validates :first_name_kana, presence: true, format: { with: /\A[ァ-ン]+\z/ }
   validates :last_name_kana, presence: true, format: { with: /\A[ァ-ン]+\z/ }
   validates :birthday, presence: true
+
+  validates :password, format: { with: /([0-9].*[a-zA-Z]|[a-zA-Z].*[0-9])/ }
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
