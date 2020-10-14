@@ -41,9 +41,9 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include('Shipping fee status must be other than 1')
     end
     it '配送元の地域情報が空だと登録できない' do
-      @item.prefecture_source_id = 0
+      @item.prefecture_source_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include('Prefecture source must be other than 0')
+      expect(@item.errors.full_messages).to include('Prefecture source must be other than 1')
     end
     it '発送までの日数情報が空だと登録できない' do
       @item.scheduled_delivery_id = 1

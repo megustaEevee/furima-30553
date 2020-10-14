@@ -1,19 +1,23 @@
 class Item < ApplicationRecord
   belongs_to :user
   has_one    :purchaser
-
   has_one_attached :image
 
-  validates :name,                   presence: true
-  validates :info,                   presence: true
-  validates :category_id,            presence: true, numericality: { other_than: 1 }
-  validates :sales_status_id,        presence: true, numericality: { other_than: 1 }
-  validates :shipping_fee_status_id, presence: true, numericality: { other_than: 1 }
-  validates :prefecture_source_id,   presence: true, numericality: { other_than: 0 }
-  validates :scheduled_delivery_id,  presence: true, numericality: { other_than: 1 }
-  validates :price,                  presence: true, format: { with: /\A[0-9]+\z/ }, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+  with_options presence: true do
+    validates :name
+    validates :info
 
-  validates :image, presence: true
+    with_options numericality: { other_than: 1 } do
+      validates :category_id
+      validates :sales_status_id
+      validates :shipping_fee_status_id
+      validates :prefecture_source_id
+      validates :scheduled_delivery_id
+    end
+
+    validates :price, format: { with: /\A[0-9]+\z/ }, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+    validates :image
+  end
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
