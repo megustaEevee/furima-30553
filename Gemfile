@@ -37,6 +37,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'rubocop', require: false
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'rubocop', require: false
   gem 'web-console', '>= 3.3.0'
