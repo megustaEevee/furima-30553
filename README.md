@@ -38,7 +38,7 @@
 - belongs_to :user
 - has_one    :purchaser
 
-## orders テーブル
+## addresses テーブル
 
 | Column        | Type          | Options           |
 | ------------- | ------------- | ----------------- |
@@ -63,6 +63,6 @@
 
 ### Association
 
-- has_one    :order
+- has_one    :address
 - belongs_to :item
 - belongs_to :user
