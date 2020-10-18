@@ -5,7 +5,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.order(id: :DESC)
-    @purchaser = Purchaser.all
   end
 
   def show
