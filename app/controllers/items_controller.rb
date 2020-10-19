@@ -24,11 +24,10 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @purchaser_item 
+    if @purchaser_item
       redirect_to root_path
     elsif current_user.id != @item.user.id
       redirect_to root_path
-    else
     end
   end
 

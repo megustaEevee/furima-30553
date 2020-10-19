@@ -5,9 +5,9 @@ class User < ApplicationRecord
   with_options presence: true do
     validates :nickname
     validates :birthday
-    
+
     with_options format: { with: /\A[ぁ-んァ-ン一-龥]+\z/ } do
-      validates :first_name  
+      validates :first_name
       validates :last_name
     end
 
@@ -15,7 +15,6 @@ class User < ApplicationRecord
       validates :first_name_kana
       validates :last_name_kana
     end
-    
   end
   validates :password, format: { with: /([0-9].*[a-zA-Z]|[a-zA-Z].*[0-9])/ }
 
