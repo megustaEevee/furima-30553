@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
   def edit
     if @purchaser_item
       redirect_to root_path
-    elsif current_user.id != @item.user.id
+    else current_user.id != @item.user.id
       redirect_to root_path
     end
   end
@@ -51,8 +51,7 @@ class ItemsController < ApplicationController
   private
 
   def sold_out
-    @purchaser = Purchaser.all
-    @purchaser_item = @purchaser.find_by(item_id: @item.id)
+    @purchaser_item = Purchaser.find_by(item_id: @item.id)
   end
 
   def find_item

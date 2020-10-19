@@ -3,8 +3,7 @@ class OrdersController < ApplicationController
   before_action :find_item, only: [:index, :create]
 
   def index
-    @purchaser = Purchaser.all
-    @purchaser_item = @purchaser.find_by(item_id: @item.id)
+    @purchaser_item = Purchaser.find_by(item_id: @item.id)
     if @purchaser_item
       redirect_to root_path
     elsif current_user.id == @item.user.id
