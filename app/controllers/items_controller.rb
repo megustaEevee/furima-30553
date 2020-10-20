@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :find_item, only: [:show, :edit, :update, :destroy]
-  before_action :sold_out, only: [:show, :edit]
 
   def index
     @items = Item.all.order(id: :DESC)
@@ -16,18 +15,18 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    if @item.save
-      redirect_to root_path
+    if @item.valid?
+      @item.save
+      return redirect_to root_path
     else
       render :new
     end
   end
 
   def edit
-    if @purchaser_item
+    if @item.purchaser || current_user.id != @item.user.id
       redirect_to root_path
-    else current_user.id != @item.user.id
-      redirect_to root_path
+    else
     end
   end
 
@@ -49,10 +48,6 @@ class ItemsController < ApplicationController
   end
 
   private
-
-  def sold_out
-    @purchaser_item = Purchaser.find_by(item_id: @item.id)
-  end
 
   def find_item
     @item = Item.find(params[:id])
