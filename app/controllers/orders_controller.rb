@@ -5,9 +5,8 @@ class OrdersController < ApplicationController
   def index
     if @item.purchaser || current_user.id == @item.user.id
       redirect_to root_path
-    else
-      @purchaser_address = PurchaserAddress.new
     end
+    @purchaser_address = PurchaserAddress.new
   end
 
   def create
