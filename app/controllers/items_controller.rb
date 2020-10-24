@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :find_item, only: [:show, :edit, :update, :destroy]
+  before_action :find_item, only: [:show, :kanryou, :edit, :update, :destroy]
 
   def index
     @items = Item.all.order(id: :DESC)
@@ -17,16 +17,18 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.valid?
       @item.save
-      return redirect_to root_path
+      return redirect_to kanryou_item_path(@item.id)
     else
       render :new
     end
   end
 
+  def kanryou
+  end
+
   def edit
     if @item.purchaser || current_user.id != @item.user.id
       redirect_to root_path
-    else
     end
   end
 

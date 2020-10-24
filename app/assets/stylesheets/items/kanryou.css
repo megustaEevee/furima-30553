@@ -1,0 +1,27 @@
+.kanryou{
+  font-size: 25px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.setumei{
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kanryou_item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kanryou_top {
+  font-size: 20px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

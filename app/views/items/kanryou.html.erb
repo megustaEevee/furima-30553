@@ -1,0 +1,31 @@
+<%= render "shared/header" %>
+
+<div class="kanryou" >
+  商品の出品が完了しました
+</div>
+
+<%= link_to item_path(@item.id), class:"kanryou_item" do %>
+  <div class='item-img-content'>
+    <%= image_tag @item.image, class: "item-img" %>
+  </div>
+  <div class='item-info'>
+      <h3 class='item-name'>
+        <%= @item.name %>
+      </h3>
+    <div class='item-price'>
+        <span><%= @item.price %>円<br>(税込み)</span>
+      <div class='star-btn'>
+        <%= image_tag "star.png", class:"star-icon" %>
+        <span class='star-count'>0</span>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="setumei">
+*出品商品の画像をクリックすると詳細を確認できます
+</div>
+
+<%=link_to 'topページに戻る', root_path, class:"kanryou_top" %>
+
+<%= render "shared/footer" %>
