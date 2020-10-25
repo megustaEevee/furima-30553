@@ -3,9 +3,7 @@ class OrdersController < ApplicationController
   before_action :find_item, only: [:index, :create]
 
   def index
-    if @item.purchaser || current_user.id == @item.user.id
-      redirect_to root_path
-    end
+    redirect_to root_path if @item.purchaser || current_user.id == @item.user.id
     @purchaser_address = PurchaserAddress.new
   end
 
@@ -14,7 +12,7 @@ class OrdersController < ApplicationController
     if @purchaser_address.valid?
       pay_item
       @purchaser_address.save
-      redirect_to root_path
+      redirect_to kounyu_item_path(@item.id)
     else
       render action: :index
     end

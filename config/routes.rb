@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :items  do
     resources :orders, only: [:index, :create]
     member do
-      get 'kanryou'
+      get 'kanryou', 'kounyu'
     end
   end
 end
