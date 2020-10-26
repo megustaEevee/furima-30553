@@ -1,12 +1,15 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :find_item, only: [:show, :kanryou, :kounyu, :edit, :update, :destroy]
+  before_action :find_item, only: [:kanryou, :kounyu, :edit, :update, :destroy]
 
   def index
     @items = Item.all.order(id: :DESC)
   end
 
   def show
+    item = Item.where(id: params[:id])
+    return redirect_to root_path if item == []
+    @item = Item.find(params[:id])
   end
 
   def new
