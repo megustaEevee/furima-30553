@@ -37,6 +37,17 @@
 
 - belongs_to :user
 - has_one    :purchaser
+- has_many   :comments
+
+## comments テーブル
+| Column        | Type          | Options           |
+| ------------- | ------------- | ----------------- |
+| text          | text          | null: false       |
+| item          | references    | foreign_key: true |
+
+### Association
+
+- belongs_to :item
 
 ## addresses テーブル
 

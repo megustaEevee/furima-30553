@@ -9,7 +9,11 @@ class ItemsController < ApplicationController
   def show
     item = Item.where(id: params[:id])
     return redirect_to root_path if item == []
+
     @item = Item.find(params[:id])
+
+    @comment = Comment.new
+    @comments = @item.comments
   end
 
   def new
