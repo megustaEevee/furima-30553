@@ -76,7 +76,7 @@
   <%# /商品の概要 %>
 
   <div class="comment-box">
-    <%= form_with(model: [@item, @comment], local: true) do |f| %>
+    <%= form_with model: [@item, @comment] do |f| %>
       <%= f.text_area :text, class: "comment-text" %>
       <p class="comment-warn">
         相手のことを考え丁寧なコメントを心がけましょう。
@@ -90,7 +90,7 @@
   <% if @comments %>
     <div id='comments'>
       <% @comments.reverse_each do |comment| %>
-        <p><%= comment.text %></p>
+        <p><%= simple_format(h comment.text) %></p>
       <% end %>
     </div>
   <% end %>
